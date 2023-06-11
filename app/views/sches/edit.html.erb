@@ -1,0 +1,24 @@
+<h1>予定の編集</h1>
+<% if flash[:noedi]%>
+  <%= flash[:noedi]%>
+<% end%>
+<%= form_with model: @sch do |sch|%>
+  <tr>
+    <th><%= sch.label :title, "タイトル"%></th>
+    <td><%= sch.text_field :title%></td>
+    
+    <th><%= sch.label :sday, "開始日"%></th>
+    <td><%= sch.text_field :sday%></td>
+    
+    <th><%= sch.label :eday, "終了日"%></th>
+    <td><%= sch.text_field :eday%></td>
+    
+    <th><%= sch.label :all, "終日"%></th>
+    <td><%= sch.check_box :all%></td>
+    
+    <th><%= sch.label :memo, "予定"%></th>
+    <td><%= sch.text_field :memo%></td>
+  </tr>
+  <p><%= sch.submit "内容を更新"%></p>
+  <p><%= link_to "戻る", sches_path%></p>
+<% end%>

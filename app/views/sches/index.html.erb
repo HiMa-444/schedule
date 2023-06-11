@@ -1,0 +1,70 @@
+<% require "active_support/time"%>
+<% today = Time.now.strftime("%F")%>
+
+<h1>予定一覧</h1>
+<% if flash[:notice]%>
+  <%= flash[:notice]%>
+<% end%>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>終日</th>
+      <th>更新日</th>
+    </tr>
+  </thead>
+  <tbody id = "body">
+    <% count = 0%>
+    <% @sches.each do |sch|%>
+      <% count += 1%>
+      <tr>
+        <td><%= sch.id%></td>
+        <td><%= sch.title%></td>
+        <td>
+          <% year = sch.sday.to_s.slice(0,4)%>
+          <% month = sch.sday.to_s.slice(4,2)%>
+          <% day = sch.sday.to_s.slice(6,2)%>
+          <%="#{year}/#{month}/#{day}"%>
+        </td>
+        <td>
+          <% year = sch.eday.to_s.slice(0,4)%>
+          <% month = sch.eday.to_s.slice(4,2)%>
+          <% day = sch.eday.to_s.slice(6,2)%>
+          <%="#{year}/#{month}/#{day}"%>
+        </td>
+        <td><% if sch.all == 1%>
+              <p>○</p>
+            <% end%>
+        </td>
+        <td><%= sch.updated_at.to_s(:time_jp)%></td>
+        <td><%= link_to "詳細", sch_path(sch.id)%></td>
+        <td><%= link_to "編集", edit_sch_path(sch.id)%></td>
+        <td>
+          <dialog>
+            <p>ID:<%=sch.id%>、<%=sch.title%>を消しますか？</p>
+            <p><%= button_to "はい", sch_path(sch.id), method: :delete%></p>
+            <button><%= link_to "いいえ", sches_path%></button>
+          </dialog>
+          <button class = "del">削除</button>
+        </td>
+      </tr>
+    <% end%>
+  </tbody>
+</table>
+<script>
+  let count = document.getElementsByClassName('del');
+  for(let i=0;i<count.length;i++){
+    count[i].setAttribute('id', i);
+  }
+  document.getElementById('body').addEventListener('click', function(e){
+    let num = e.target.getAttribute('id');
+    let dialog = document.querySelectorAll('dialog');
+    dialog[num].showModal();
+  }, false)
+</script>
+<p>日付:<%= today%></p>
+<p>予定の数:<%= count%>個</p>
+<p><%= link_to "予定の追加", new_sch_path%></p>
