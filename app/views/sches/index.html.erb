@@ -25,14 +25,14 @@
         <td><%= sch.title%></td>
         <td>
           <% year = sch.sday.to_s.slice(0,4)%>
-          <% month = sch.sday.to_s.slice(4,2)%>
-          <% day = sch.sday.to_s.slice(6,2)%>
+          <% month = sch.sday.to_s.slice(5,2)%>
+          <% day = sch.sday.to_s.slice(8,2)%>
           <%="#{year}/#{month}/#{day}"%>
         </td>
         <td>
           <% year = sch.eday.to_s.slice(0,4)%>
-          <% month = sch.eday.to_s.slice(4,2)%>
-          <% day = sch.eday.to_s.slice(6,2)%>
+          <% month = sch.eday.to_s.slice(5,2)%>
+          <% day = sch.eday.to_s.slice(8,2)%>
           <%="#{year}/#{month}/#{day}"%>
         </td>
         <td><% if sch.all == 1%>

@@ -14,8 +14,8 @@ ActiveRecord::Schema.define(version: 2023_06_11_061629) do
 
   create_table "sches", force: :cascade do |t|
     t.string "title"
-    t.integer "sday"
-    t.integer "eday"
+    t.date "sday"
+    t.date "eday"
     t.integer "all"
     t.string "memo"
     t.datetime "created_at", precision: 6, null: false

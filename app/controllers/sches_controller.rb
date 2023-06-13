@@ -3,11 +3,11 @@ class SchesController < ApplicationController
     @sches = Sch.all
   end
   def new
-    @sch = Sch.new()
+    @sch = Sch.new
   end
   def create
-    @sch = Sch.new(params.require(:sch).permit(:title, :sday, :eday, :all, :memo))
-    if @sch.save and @sch.sday.to_i < @sch.eday.to_i
+    @sch = Sch.new(params.require(:sch).permit(:title, :sday, :eday, :all, :memo, :daycheck))
+    if @sch.save
       flash[:notice] = "予定の追加完了"
       redirect_to sches_path
     else
@@ -23,7 +23,7 @@ class SchesController < ApplicationController
   end
   def update
     @sch = Sch.find(params[:id])
-    if @sch.update(params.require(:sch).permit(:title, :sday, :eday, :all, :memo)) and  @sch.sday.to_i < @sch.eday.to_i
+    if @sch.update(params.require(:sch).permit(:title, :sday, :eday, :all, :memo, :daycheck))
       flash[:notice] = "予定の更新完了"
       redirect_to sches_path
     else
