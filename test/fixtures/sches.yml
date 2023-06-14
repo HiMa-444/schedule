@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: 
+  sday: 2023-06-11
+  eday: 2023-06-11
+  all: 1
+  memo: 
+
+two:
+  title: 
+  sday: 2023-06-11
+  eday: 2023-06-11
+  all: 1
+  memo: 
