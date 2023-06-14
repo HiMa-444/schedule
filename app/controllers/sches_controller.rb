@@ -24,7 +24,7 @@ class SchesController < ApplicationController
   def update
     @sch = Sch.find(params[:id])
     if @sch.update(params.require(:sch).permit(:title, :sday, :eday, :all, :memo, :daycheck))
-      flash[:notice] = "予定の更新完了"
+      flash[:notice] = "予定の編集完了"
       redirect_to sches_path
     else
       flash[:noedi] = "入力内容に誤りがあります"
